@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Invitacion – Gala Corp.</title>
+    <link rel="icon" href="assets/favicon.png">
+    <style>
+        :root {
+            --c-orange: #FF6B00;
+            --c-gold: #FFD700;
+            --bg-beige: #f1e0b8;
+            --ease-elegant: cubic-bezier(0.6, 0.05, 0.01, 0.9);
+            --speed: 1.2s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #2b170a 0%, #000000 90%);
+            overflow: hidden;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* ── CONTENEDOR PRINCIPAL RESPONSIVE ── */
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 400px;
+            /* Tamaño máximo para escritorio/tablet */
+            max-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 2000px;
+        }
+
+        /* En móviles pequeños, ajustamos el tamaño */
+        @media (max-width: 450px) {
+            .scene {
+                width: 92vw;
+                height: 85vh;
+            }
+        }
+
+        /* ── CUERPO DE LA CARTA ── */
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-beige);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            transition: all var(--speed) var(--ease-elegant);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .scene.zoom-out .envelope {
+            transform: translateZ(-500px) scale(0.7);
+            opacity: 0.4;
+            filter: grayscale(0.5) brightness(0.6);
+        }
+
+        /* solapas que desaparecen */
+        .flap-container {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .scene.open .flap-container {
+            opacity: 0;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            background: var(--c-orange);
+            transition: transform var(--speed) var(--ease-elegant);
+            pointer-events: auto;
+        }
+
+        /* Ajuste preciso al centro: solapa izquierda 64% */
+        .flap-left {
+            left: 0;
+            width: 64%;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .flap-right {
+            right: 0;
+            width: 36.1%;
+        }
+
+        .scene.open .flap-left {
+            transform: translateX(-100%);
+        }
+
+        .scene.open .flap-right {
+            transform: translateX(100%);
+        }
+
+        /* ── BANDA Y LOGO ── */
+        .floating-group {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 30;
+            transition: all var(--speed) var(--ease-elegant);
+        }
+
+        /* El lazo y logo suben juntos */
+        .scene.open .floating-group {
+            top: 15%;
+        }
+
+        .orange-band {
+            width: 100%;
+            height: 30px;
+            background: var(--c-orange);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .seal {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 64%;
+            /* Centrado en la línea de separación */
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #1a1a1a;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            transition: transform 0.2s ease, box-shadow 0.4s ease, left var(--speed) var(--ease-elegant);
+            overflow: hidden;
+            pointer-events: auto;
+        }
+
+        /* 1. Animación de aplastado */
+        .seal:active {
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+
+        /* 2. Iluminación dorada (se activa por JS) */
+        .seal.glow-gold {
+            box-shadow: 0 0 30px var(--c-gold), 0 0 10px var(--c-gold) inset;
+            border-color: var(--c-gold);
+        }
+
+        /* 3. Perder brillo y centrarse al abrir */
+        .scene.open .seal {
+            left: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            /* Brillo normal */
+            border-color: #1a1a1a;
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+
+        .seal img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ── CONTENIDO INTERIOR ── */
+        .letter-body {
+            position: relative;
+            flex: 1;
+            padding: 180px 30px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .scene.open .letter-body {
+            opacity: 1;
+            transition-delay: 0.6s;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 88%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            width: 80%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .tagline {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--c-orange);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .headline {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .text {
+            font-size: 11px;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            font-size: 13px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .btn-map {
+            background: var(--c-orange);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="scene" id="mainScene">
+
+        <!-- Elementos que se mueven juntos -->
+        <div class="floating-group" id="mover">
+            <div class="orange-band"></div>
+            <div class="seal" id="seal" onclick="startSequence()">
+                <img src="assets/boton.png" alt="Gala Corp">
+            </div>
+        </div>
+
+        <div class="envelope">
+            <!-- Solapas naranjas que desaparecen -->
+            <div class="flap-container">
+                <div class="flap flap-left"></div>
+                <div class="flap flap-right"></div>
+            </div>
+
+
+            <div class="letter-body">
+                <p class="tagline">GALA CORP · 2026</p>
+                <h2 class="headline">HAY ANUNCIOS QUE MARCAN EL INICIO DE UNA NUEVA ETAPA.</h2>
+                <p class="text"><strong>Gala Corp</strong> presneta oficialmente su rebranding, una evolucíon estratégica que fotalece su posicionamiento y proyecta su visión hacia el futuro</p>
+                <p class="text">Te invitamos a ser parte de este momento clave y conocer el propósito que nos impulsa</p>
+                <p class="text"><strong>Fecha:</strong> 14 de mayo • 10:00 a.m.</p>
+                <div style="font-size: 10px; color: #666;">
+                    <p><b>Lugar: Instalaciones Gala Corp</b></p>
+                    <p>Palo Lateral, Sector Yacupamba. Ambato.</p>
+                </div>
+                <a href="https://maps.app.goo.gl/qXrw5MVMWSkQet6W8" class="btn-map">📍 CÓMO LLEGAR</a>
+            </div>
+
+            <img src="assets/g.png" class="watermark" alt="G">
+
+        </div>
+    </div>
+
+    <script>
+        let state = "closed";
+        const scene = document.getElementById('mainScene');
+        const seal = document.getElementById('seal');
+
+        function startSequence() {
+            if (state !== "closed") {
+                if (state === "open") exitSequence();
+                return;
+            }
+
+            // 1. Efecto de presión (ya manejado por CSS :active)
+            // 2. Iluminación dorada rápida
+            setTimeout(() => {
+                seal.classList.add('glow-gold');
+
+                // 3. Apertura tras iluminarse
+                setTimeout(() => {
+                    scene.classList.add('open');
+                    state = "open";
+                }, 600); // Pequeña pausa para apreciar el dorado
+            }, 100);
+        }
+
+        function exitSequence() {
+            scene.classList.add('zoom-out');
+            state = "zoomed";
+
+            setTimeout(() => {
+                // Limpiar clases y resetear
+                scene.style.transition = "none";
+                scene.classList.remove('open', 'zoom-out');
+                seal.classList.remove('glow-gold');
+
+                setTimeout(() => {
+                    scene.style.transition = "";
+                    state = "closed";
+                }, 100);
+            }, 1500);
+        }
+    </script>
+</body>
+
+</html>
