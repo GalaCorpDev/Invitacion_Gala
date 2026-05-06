@@ -31,14 +31,17 @@
         }
 
         body {
-            height: 100vh;
             width: 100vw;
             display: flex;
             align-items: center;
             justify-content: center;
             background: radial-gradient(circle at center, #2b170a 0%, #000000 90%);
-            overflow: hidden;
             font-family: 'Montserrat', sans-serif;
+            height: auto;          /* Cambia de 100vh a auto */
+            min-height: 100vh;     /* Asegura que siempre ocupe el alto de la pantalla */
+            overflow-y: auto;      /* Permite el scroll vertical de toda la página */
+            overflow-x: hidden;
+            padding: 20px 0;
         }
 
         /* ── CONTENEDOR PRINCIPAL RESPONSIVE ── */
@@ -48,11 +51,17 @@
             height: 100%;
             max-width: 400px;
             /* Tamaño máximo para escritorio/tablet */
-            max-height: 700px;
+        
             display: flex;
             align-items: center;
             justify-content: center;
             perspective: 2000px;
+            min-height: 800px; 
+            height: auto; 
+            perspective: 2000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* En móviles pequeños, ajustamos el tamaño */
@@ -63,11 +72,30 @@
             }
         }
 
+        @media (max-height: 700px) {
+            .letter-body {
+                padding-top: 130px;
+                /* Subimos el texto para ganar espacio */
+            }
+
+            .scene.open .floating-group {
+                top: 10%;
+                /* El logo sube un poco más al abrirse */
+            }
+
+            .headline {
+                font-size: 1.1rem;
+                /* Achicamos un pelín el título */
+                margin-bottom: 15px;
+            }
+        }
+
         /* ── CUERPO DE LA CARTA ── */
         .envelope {
             position: absolute;
             width: 100%;
-            height: 100%;
+            height: auto;
+            min-height: 600px;
             background-color: var(--bg-beige);
             background-image: url('assets/fondo.png');
             /* imagen 1080x1920 */
@@ -82,11 +110,48 @@
             overflow: hidden;
         }
 
+        /* Oculta la barra de scroll en toda la página */
+        html::-webkit-scrollbar {
+            display: none;
+        }
+        html {
+            -ms-overflow-style: none;  /* IE y Edge */
+            scrollbar-width: none;     /* Firefox */
+        }
+        .letter-body {
+            position: relative;
+            flex: 1;
+            /* Ajustamos el padding para que no sea tan agresivo en móviles */
+            padding: 160px 25px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            /* Habilitamos el scroll vertical solo aquí adentro */
+            overflow-y: auto;
+            overflow-x: hidden;
+            /* Scroll suave para iPhone */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Estilizamos la barra de scroll para que sea sutil */
+        .letter-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .letter-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 0, 0.2);
+            border-radius: 10px;
+        }
+
         .scene.zoom-out .envelope {
             transform: translateZ(-500px) scale(0.7);
             opacity: 0.4;
             filter: grayscale(0.5) brightness(0.6);
         }
+
 
         /* solapas que desaparecen */
         .flap-container {
@@ -145,7 +210,7 @@
 
         /* El lazo y logo suben juntos */
         .scene.open .floating-group {
-            top: 15%;
+            top: 17%;
         }
 
         .orange-band {
@@ -183,8 +248,8 @@
 
         /* 2. Iluminación dorada (se activa por JS) */
         .seal.glow-gold {
-            box-shadow: 0 0 30px var(--c-gold), 0 0 10px var(--c-gold) inset;
-            border-color: var(--c-gold);
+            box-shadow: 0 0 30px var(--bg-beige), 0 0 10px var(--bg-beige) inset;
+            border-color: var(--bg-beige);
         }
 
         /* 3. Perder brillo y centrarse al abrir */
