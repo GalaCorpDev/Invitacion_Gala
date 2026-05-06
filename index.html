@@ -6,7 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Invitacion – Gala Corp.</title>
     <link rel="icon" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* Fuente personalizada – pon el archivo en assets/AwesomeSerifVAR.woff2 */
+        @font-face {
+            font-family: 'Awesome Serif';
+            src: url('assets/Awesome Serif VAR-VF.ttf') format('woff2');
+            font-weight: 100 900;
+        }
+
         :root {
             --c-orange: #FF6B00;
             --c-gold: #FFD700;
@@ -30,7 +38,7 @@
             justify-content: center;
             background: radial-gradient(circle at center, #2b170a 0%, #000000 90%);
             overflow: hidden;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* ── CONTENEDOR PRINCIPAL RESPONSIVE ── */
@@ -61,8 +69,12 @@
             width: 100%;
             height: 100%;
             background-color: var(--bg-beige);
+            background-image: url('assets/fondo.png');
+            /* imagen 1080x1920 */
+            background-size: cover;
+            background-position: center top;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-            border-radius: 12px;
+            border-radius: 20px;
             transition: all var(--speed) var(--ease-elegant);
             z-index: 1;
             display: flex;
@@ -93,21 +105,23 @@
             position: absolute;
             top: 0;
             height: 100%;
-            background: var(--c-orange);
             transition: transform var(--speed) var(--ease-elegant);
             pointer-events: auto;
         }
 
-        /* Ajuste preciso al centro: solapa izquierda 64% */
         .flap-left {
             left: 0;
-            width: 64%;
-            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            width: 84%;
+            background: linear-gradient(100deg, #FF6B00 70%, #e85e00 100%);
         }
 
         .flap-right {
             right: 0;
-            width: 36.1%;
+            width: 36.4%;
+            background: linear-gradient(160deg, #ff7210 0%, #e35500 100%);
+            border-radius: 20px;
+            box-shadow: -8px 0 24px rgba(0, 0, 0, 0.45), -2px 0 6px rgba(0, 0, 0, 0.25);
+            z-index: 2;
         }
 
         .scene.open .flap-left {
@@ -192,7 +206,7 @@
         .letter-body {
             position: relative;
             flex: 1;
-            padding: 180px 30px 40px;
+            padding: 165px 30px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -218,31 +232,86 @@
 
         .tagline {
             font-size: 10px;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             color: var(--c-orange);
             letter-spacing: 3px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .headline {
-            font-family: 'Times New Roman', serif;
+            font-family: 'Awesome Serif', 'Times New Roman', serif;
             font-size: 1.4rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            font-weight: normal;
+            line-height: 1.25;
+            margin-bottom: 22px;
+            font-weight: 400;
+            color: #000000;
         }
 
         .text {
-            font-size: 11px;
-            line-height: 1.6;
-            color: #444;
+            font-size: 11.5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            line-height: 1.75;
+            color: rgba(0, 0, 0, 0.8);
             margin-bottom: 10px;
+        }
+
+
+        .text strong {
+            font-weight: 700;
+            color: #000000;
         }
 
         .info {
             font-size: 13px;
-            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             margin: 20px 0;
+            color: #000000;
+        }
+
+        .date-row {
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(0, 0, 0, 0.85);
+            margin: 16px 0 10px;
+        }
+
+        .date-row b {
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .date-row .dot {
+            color: var(--c-orange);
+            margin: 0 6px;
+        }
+
+        .divider {
+            width: 75%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.5), transparent);
+            margin: 10px auto 14px;
+        }
+
+        .venue-block {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        .venue-block .venue-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        .venue-block .venue-addr {
+            font-size: 10px;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.7);
+            margin-top: 3px;
         }
 
         .btn-map {
@@ -251,9 +320,162 @@
             text-decoration: none;
             padding: 12px 30px;
             border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
             font-size: 10px;
-            font-weight: bold;
+            font-weight: 700;
             margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 1px;
+        }
+
+        .btn-map svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .btn-confirm {
+            background: transparent;
+            color: #000000;
+            border: 2px solid #FF6B00;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            margin-top: 12px;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .confirm-options {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        .confirm-options.visible {
+            display: flex;
+        }
+
+        .confirm-options .q {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .confirm-btns {
+            display: flex;
+            gap: 14px;
+        }
+
+        .confirm-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .btn-si,
+        .btn-no {
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 1px;
+        }
+
+        .btn-si {
+            background: var(--c-orange);
+            color: white;
+        }
+
+        .btn-no {
+            background: rgba(255, 255, 255, 0.15);
+            color: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* ── PANEL NOMBRE ── */
+        .name-panel {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        .name-panel.visible {
+            display: flex;
+        }
+
+        .name-panel p {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.85);
+            letter-spacing: 0.5px;
+        }
+
+        .name-panel input {
+            width: 85%;
+            padding: 10px 16px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.08);
+            color: #000000;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            outline: none;
+            text-align: center;
+        }
+
+        .name-panel input::placeholder {
+            color: rgba(0, 0, 0, 0.35);
+        }
+
+        .name-panel input:focus {
+            border-color: var(--c-orange);
+        }
+
+        .name-panel .name-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-submit {
+            background: var(--c-orange);
+            color: #000000;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .btn-back {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -281,14 +503,44 @@
             <div class="letter-body">
                 <p class="tagline">GALA CORP · 2026</p>
                 <h2 class="headline">HAY ANUNCIOS QUE MARCAN EL INICIO DE UNA NUEVA ETAPA.</h2>
-                <p class="text"><strong>Gala Corp</strong> presneta oficialmente su rebranding, una evolucíon estratégica que fotalece su posicionamiento y proyecta su visión hacia el futuro</p>
-                <p class="text">Te invitamos a ser parte de este momento clave y conocer el propósito que nos impulsa</p>
-                <p class="text"><strong>Fecha:</strong> 14 de mayo • 10:00 a.m.</p>
-                <div style="font-size: 10px; color: #666;">
-                    <p><b>Lugar: Instalaciones Gala Corp</b></p>
-                    <p>Palo Lateral, Sector Yacupamba. Ambato.</p>
+                <p class="text"><strong>Gala Corp</strong> presenta oficialmente su rebranding, una evolución
+                    estratégica que fortalece su posicionamiento y proyecta su visión hacia el futuro.</p>
+                <p class="text">Te invitamos a ser parte de este momento clave y conocer el propósito que nos impulsa.
+                </p>
+                <p class="date-row"><b>Fecha:</b> 14 de mayo <span class="dot">•</span> <b>Hora:</b> 10:00 a.m.</p>
+                <div class="divider"></div>
+                <div class="venue-block">
+                    <p class="venue-name">Lugar: Instalaciones Gala Corp<br>Paso lateral, sector Yacupamba.</p>
+                    <p class="venue-addr">100m antes del desvío a Solca, Izamba Ambato.</p>
                 </div>
-                <a href="https://maps.app.goo.gl/qXrw5MVMWSkQet6W8" class="btn-map">📍 CÓMO LLEGAR</a>
+                <a href="https://maps.app.goo.gl/qXrw5MVMWSkQet6W8" class="btn-map">
+                    <svg viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    CÓMO LLEGAR
+                </a>
+
+                <div class="confirm-wrap">
+                    <button class="btn-confirm" id="btnConfirm" onclick="showConfirm()">CONFIRMAR ASISTENCIA</button>
+
+                    <div class="confirm-options" id="confirmOptions">
+                        <p class="q">¿Confirmas tu asistencia?</p>
+                        <div class="confirm-btns">
+                            <button class="btn-si" onclick="mostrarNombre()">Sí</button>
+                            <button class="btn-no" onclick="responderNo()">No</button>
+                        </div>
+                    </div>
+
+                    <div class="name-panel" id="namePanel">
+                        <p>¿Cuál es tu nombre?</p>
+                        <input type="text" id="nameInput" placeholder="Escribe tu nombre" maxlength="60">
+                        <div class="name-btns">
+                            <button class="btn-submit" onclick="registrarNombre()">CONFIRMAR</button>
+                            <button class="btn-back" onclick="volverOpciones()">VOLVER</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <img src="assets/g.png" class="watermark" alt="G">
@@ -297,6 +549,9 @@
     </div>
 
     <script>
+        const SHEETS_URL = 'https://script.google.com/macros/s/AKfycby8AGhLbQgGtOTjKQs7Affex6eteuB4ODY-tYJyh32ree5ShTFaFuXVx2nKapaHyWWvrw/exec';
+
+        /* ── LÓGICA PRINCIPAL ─────────────────────────────────────────────── */
         let state = "closed";
         const scene = document.getElementById('mainScene');
         const seal = document.getElementById('seal');
@@ -306,37 +561,124 @@
                 if (state === "open") exitSequence();
                 return;
             }
-
-            // 1. Efecto de presión (ya manejado por CSS :active)
-            // 2. Iluminación dorada rápida
             setTimeout(() => {
                 seal.classList.add('glow-gold');
-
-                // 3. Apertura tras iluminarse
-                setTimeout(() => {
-                    scene.classList.add('open');
-                    state = "open";
-                }, 600); // Pequeña pausa para apreciar el dorado
+                setTimeout(() => { scene.classList.add('open'); state = "open"; }, 600);
             }, 100);
+        }
+
+        function showConfirm() {
+            document.getElementById('btnConfirm').style.display = 'none';
+            document.getElementById('confirmOptions').classList.add('visible');
+        }
+
+        function mostrarNombre() {
+            document.getElementById('confirmOptions').classList.remove('visible');
+            document.getElementById('namePanel').classList.add('visible');
+            setTimeout(() => document.getElementById('nameInput').focus(), 100);
+        }
+
+        function volverOpciones() {
+            document.getElementById('namePanel').classList.remove('visible');
+            document.getElementById('confirmOptions').classList.add('visible');
+        }
+
+        function guardarRegistro(nombre, asiste) {
+            const reg = { nombre, asiste, fecha: new Date().toLocaleString('es-EC') };
+            // localStorage (siempre)
+            const lista = JSON.parse(localStorage.getItem('gala_asistentes') || '[]');
+            lista.push(reg);
+            localStorage.setItem('gala_asistentes', JSON.stringify(lista));
+            // Google Sheets (si está configurado)
+            if (SHEETS_URL) {
+                fetch(SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(reg)
+                }).catch(() => { }); // falla silenciosa si no hay red
+            }
+        }
+
+        function registrarNombre() {
+            const nombre = document.getElementById('nameInput').value.trim();
+            if (!nombre) { document.getElementById('nameInput').focus(); return; }
+            guardarRegistro(nombre, true);
+            exitSequence();
+        }
+
+        function responderNo() {
+            guardarRegistro('(no confirmó)', false);
+            exitSequence();
         }
 
         function exitSequence() {
             scene.classList.add('zoom-out');
             state = "zoomed";
-
             setTimeout(() => {
-                // Limpiar clases y resetear
                 scene.style.transition = "none";
                 scene.classList.remove('open', 'zoom-out');
                 seal.classList.remove('glow-gold');
-
-                setTimeout(() => {
-                    scene.style.transition = "";
-                    state = "closed";
-                }, 100);
+                document.getElementById('btnConfirm').style.display = '';
+                document.getElementById('confirmOptions').classList.remove('visible');
+                document.getElementById('namePanel').classList.remove('visible');
+                document.getElementById('nameInput').value = '';
+                setTimeout(() => { scene.style.transition = ""; state = "closed"; }, 100);
             }, 1500);
         }
+
+        /* ── ADMIN: abre con ?admin en la URL ─────────────────────────────── */
+        if (location.search.includes('admin')) {
+            window.addEventListener('DOMContentLoaded', () => {
+                const lista = JSON.parse(localStorage.getItem('gala_asistentes') || '[]');
+                const si = lista.filter(r => r.asiste).length;
+                const no = lista.filter(r => !r.asiste).length;
+                const div = document.createElement('div');
+                div.style.cssText = `position:fixed;inset:0;background:#111;color:#000000;
+                    font-family:Montserrat,sans-serif;padding:24px;overflow-y:auto;z-index:9999;font-size:13px`;
+                const filas = lista.map((r, i) =>
+                    `<tr style="border-bottom:1px solid #333">
+                        <td style="padding:6px 12px">${i + 1}</td>
+                        <td style="padding:6px 12px">${r.nombre}</td>
+                        <td style="padding:6px 12px;color:${r.asiste ? '#FF6B00' : '#888'}">${r.asiste ? '✓ Sí' : '✗ No'}</td>
+                        <td style="padding:6px 12px;color:#666">${r.fecha}</td>
+                    </tr>`).join('');
+                div.innerHTML = `
+                    <h2 style="color:#FF6B00;margin-bottom:16px">Gala Corp · Registro de Asistencia</h2>
+                    <p style="color:#aaa;margin-bottom:20px">Total: <b style="color:#000000">${lista.length}</b> &nbsp;|&nbsp;
+                       Confirman: <b style="color:#FF6B00">${si}</b> &nbsp;|&nbsp;
+                       No asisten: <b style="color:#888">${no}</b></p>
+                    <button onclick="descargarCSV()" style="background:#FF6B00;color:#000000;border:none;
+                        padding:10px 22px;border-radius:50px;cursor:pointer;font-weight:700;
+                        font-family:Montserrat,sans-serif;margin-bottom:20px">⬇ Descargar CSV</button>
+                    <button onclick="this.parentElement.remove()" style="background:transparent;color:#888;
+                        border:1px solid #444;padding:10px 22px;border-radius:50px;cursor:pointer;
+                        font-family:Montserrat,sans-serif;margin-left:10px">Cerrar</button>
+                    <table style="width:100%;border-collapse:collapse;margin-top:8px">
+                        <thead><tr style="color:#FF6B00">
+                            <th style="padding:6px 12px;text-align:left">#</th>
+                            <th style="padding:6px 12px;text-align:left">Nombre</th>
+                            <th style="padding:6px 12px;text-align:left">Asiste</th>
+                            <th style="padding:6px 12px;text-align:left">Fecha</th>
+                        </tr></thead>
+                        <tbody>${filas || '<tr><td colspan="4" style="padding:20px;color:#666">Sin registros aún.</td></tr>'}</tbody>
+                    </table>`;
+                document.body.appendChild(div);
+            });
+        }
+
+        function descargarCSV() {
+            const lista = JSON.parse(localStorage.getItem('gala_asistentes') || '[]');
+            const csv = ['Nombre,Asiste,Fecha', ...lista.map(r =>
+                `"${r.nombre}","${r.asiste ? 'Sí' : 'No'}","${r.fecha}"`)].join('\n');
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+            a.download = 'gala-asistentes.csv';
+            a.click();
+        }
     </script>
+
+
 </body>
 
 </html>
