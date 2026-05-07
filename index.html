@@ -4,9 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Invitacion – Gala Corp.</title>
+    <!-- ===================================================== -->
+    <!-- PREVISUALIZACIÓN PARA WHATSAPP / FACEBOOK / DISCORD -->
+    <!-- ===================================================== -->
+
+    <title>Invitación – Gala Corp.</title>
+
+    <meta property="og:title" content="Invitación – Gala Corp.">
+    <meta property="og:description"
+        content="Acompáñanos al lanzamiento oficial del nuevo Gala Corp y sé parte de esta nueva etapa.">
+
+    <!-- IMPORTANTE: cambia esta URL por tu imagen -->
+    <meta property="og:image" content="https://invitacion.galaimportaciones.com/assets/preview.jpg">
+
+    <meta property="og:url" content="https://invitacion.galaimportaciones.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Gala Corp">
+
+    <!-- Tamaño recomendado -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / iPhone -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Invitación – Gala Corp.">
+    <meta name="twitter:description" content="Acompáñanos al lanzamiento oficial del nuevo Gala Corp.">
+    <meta name="twitter:image" content="https://invitacion.galaimportaciones.com/assets/preview.jpg">
+
+    <!-- Favicon -->
     <link rel="icon" href="assets/favicon.png">
+
+    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
     <style>
         /* Fuente personalizada – pon el archivo en assets/AwesomeSerifVAR.woff2 */
         @font-face {
@@ -37,12 +68,13 @@
             justify-content: center;
             background: radial-gradient(circle at center, #2b170a 0%, #000000 90%);
             font-family: 'Montserrat', sans-serif;
-            height: auto;          /* Cambia de 100vh a auto */
-            min-height: 100vh;     /* Asegura que siempre ocupe el alto de la pantalla */
-            overflow-y: auto;      /* Permite el scroll vertical de toda la página */
+            height: auto;
+            min-height: 100vh;
+            overflow-y: auto;
             overflow-x: hidden;
             padding: 20px 0;
         }
+
 
         /* ── CONTENEDOR PRINCIPAL RESPONSIVE ── */
         .scene {
@@ -51,13 +83,13 @@
             height: 100%;
             max-width: 400px;
             /* Tamaño máximo para escritorio/tablet */
-        
+
             display: flex;
             align-items: center;
             justify-content: center;
             perspective: 2000px;
-            min-height: 800px; 
-            height: auto; 
+            min-height: 800px;
+            height: auto;
             perspective: 2000px;
             display: flex;
             align-items: center;
@@ -114,10 +146,14 @@
         html::-webkit-scrollbar {
             display: none;
         }
+
         html {
-            -ms-overflow-style: none;  /* IE y Edge */
-            scrollbar-width: none;     /* Firefox */
+            -ms-overflow-style: none;
+            /* IE y Edge */
+            scrollbar-width: none;
+            /* Firefox */
         }
+
         .letter-body {
             position: relative;
             flex: 1;
